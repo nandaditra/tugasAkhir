@@ -97,7 +97,7 @@
                   <h4 class="text-center p-3">Unggah Portofolio</h4>
 
                 <div class="mb-3 row mt-5">
-                    <label for="nomorTelepon" class="col-sm-5 col-form-label">Upload Portofolio</label>
+                    <label for="nomorTelepon" class="col-sm-5 col-form-label">Upload Portofolio ke-2</label>
                     <div class="d-grid gap-2 col-sm-6">
                         <button type="button" class="btn btn-success text-white">Lanjut</button>
                     </div>
