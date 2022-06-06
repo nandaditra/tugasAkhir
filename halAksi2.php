@@ -10,7 +10,7 @@
 
     <!--CSS Style Minimum -->
     <link href="css/style.css"rel="stylesheet">
-    <title>Isi Portofolio | Ardes</title>
+    <title>Aksi | Ardes</title>
     <script src="https://kit.fontawesome.com/de7705137f.js" crossorigin="anonymous"></script>
   </head>
 
@@ -50,37 +50,80 @@
       </header>
 
       <main>
-
-       <div class="container mt-4">
-        <div class="row mt-4 py-5">
-            <div class="col-6">
-              <img class="w-100"src="img/upload.png"alt="">
+        <div class="container">
+      
+          <!-- <div class="row row-cols-1 row-cols-md-3 g-4 mb-5 m-4">
+            <div class="col">
+              <div class="card h-100">
+                <img src="img/porto1.png" class="card-img-top" alt="porto1.png">
+                <div class="card-body">
+                  <h5 class="card-title">Portofolio 1</h5>
+                </div>
+              </div>
             </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="img/porto2.png" class="card-img-top" alt="porto2.png">
+                <div class="card-body">
+                  <h5 class="card-title">Portofolio 2</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="img/porto3.png" class="card-img-top" alt="porto3.png">
+                <div class="card-body">
+                  <h5 class="card-title">Portofolio 3</h5>
+                  
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <?php 
+		      include 'c_ardes.php';
+                      $main=new c_ardes();
+                      $main->upload();
+		   ?> 
+		   <table>
+               <?php
+          // $main=new c_ardes();
+                      $main->view();
+              ?>
+		</table>
+
+          <div class="row my-5 py-5 pb-6">
             <div class="col-6">
-              <form class="shadow p-3 mb-5 mt-4 bg-body rounded "action="halAksi3.php" method="POST" enctype="multipart/form-data">
-                  <h4 class="text-center p-3">Unggah Portofolio Ke-3</h4>
+              <form class="shadow p-3 mb-5 mt-4 bg-body rounded"action="" method="POST">
+                  <h4 class="text-center p-3">Unggah Portofolio</h4>
 
-                  <div class="mb-3 p-3">
-                    <label for="formFile" class="form-label">Silahkan Masukkan File Portofolio</label>
-                    <input class="form-control" type="file" id="formFile">
-                  </div>
+                <div class="mb-3 row mt-5">
+                    <label for="nomorTelepon" class="col-sm-5 col-form-label">Upload Portofolio ke-3</label>
+                    <div class="d-grid gap-2 col-sm-6">
+                        <button type="button" class="btn btn-success text-white"name= "submit1" value="submit1">Lanjut</button>
+                    </div>
+                </div>
 
-                  <div class="text-end">
-                    <button type="button" class="btn btn-info text-white"name= "upload" value="upload">Unggah</button>
-                  </div>
-              </form>
+                <div class="mb-3 row">
+                    <label for="noWA" class="col-sm-5 col-form-label">Upload Ulang Portofolio</label>
+                    <div class="d-grid gap-2 col-sm-6">
+                        <button type="button" class="btn btn-danger text-white"name= "submit2" value="submit2">Upload Kembali</button>
+                    </div>
+                </div>
+
+
+              
+              </div>
             </div>
         </div>
-       </div>
-       
+        </div>
       </main>
 
-      <footer  class="footer mt-auto py-4 bg-dark">
+      <footer  class="footer mt-auto py-5 bg-dark">
         <p class="text-white text-center">@copyright 2022 - Created by kelompok 7</p>
       </footer>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -92,3 +135,15 @@
    
   </body>
 </html>
+
+<?php
+require_once "c_ardes.php";
+if(isset($_POST['submit1'])){
+  header("location:isiPortofolio3.php");	
+  }
+
+if(isset($_POST['submit2'])){
+	$main=new c_ardes();
+	$main->deleteUpload();
+	header("location:isiPortofolio1.php");	
+}

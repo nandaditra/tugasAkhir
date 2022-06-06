@@ -93,20 +93,20 @@
 
           <div class="row my-5 py-5 pb-6">
             <div class="col-6">
-              <form class="shadow p-3 mb-5 mt-4 bg-body rounded">
+              <form class="shadow p-3 mb-5 mt-4 bg-body rounded"action="" method="POST">
                   <h4 class="text-center p-3">Unggah Portofolio</h4>
 
                 <div class="mb-3 row mt-5">
                     <label for="nomorTelepon" class="col-sm-5 col-form-label">Upload Portofolio ke-2</label>
                     <div class="d-grid gap-2 col-sm-6">
-                        <button type="button" class="btn btn-success text-white">Lanjut</button>
+                        <button type="button" class="btn btn-success text-white"name= "submit1" value="submit1">Lanjut</button>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="noWA" class="col-sm-5 col-form-label">Upload Ulang Portofolio</label>
                     <div class="d-grid gap-2 col-sm-6">
-                        <button type="button" class="btn btn-danger text-white">Upload Kembali</button>
+                        <button type="button" class="btn btn-danger text-white"name= "submit2" value="submit2">Upload Kembali</button>
                     </div>
                 </div>
 
@@ -139,11 +139,11 @@
 <?php
 require_once "c_ardes.php";
 if(isset($_POST['submit1'])){
-  header("location:indexUpload2.php");	
+  header("location:isiPortofolio2.php");	
   }
 
 if(isset($_POST['submit2'])){
 	$main=new c_ardes();
 	$main->deleteUpload();
-	header("location:indexUpload1.php");	
+	header("location:isiPortofolio1.php");	
 }

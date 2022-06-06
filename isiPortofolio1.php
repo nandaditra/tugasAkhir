@@ -57,7 +57,7 @@
               <img class="w-100"src="img/upload.png"alt="">
             </div>
             <div class="col-6">
-              <form class="shadow p-3 mb-5 mt-4 bg-body rounded "action="aksi1.php" method="POST" enctype="multipart/form-data">
+              <form class="shadow p-3 mb-5 mt-4 bg-body rounded "action="halAksi1.php" method="POST" enctype="multipart/form-data">
                   <h4 class="text-center p-3">Unggah Portofolio Ke-1</h4>
 
                   <div class="mb-3 p-3">
