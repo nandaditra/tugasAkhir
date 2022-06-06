@@ -25,3 +25,7 @@ h5 {
 .in {
     margin:0px;
 }
+
+.bun input {
+    width:100%;
+}

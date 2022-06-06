@@ -7,12 +7,12 @@
 		<?php 
 		include 'c_ardes.php';
     $main=new c_ardes();
-    $main->upload();
+    $main->upload3();
 		?> 
 		<table>
       <?php
           // $main=new c_ardes();
-      $main->view();
+      $main->view3();
       ?>
 		</table>
 

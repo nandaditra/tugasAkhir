@@ -1,6 +1,6 @@
 <?php
 require "koneksi.php";
-// session_start();
+session_start();
 
 class m_ardes {
 
@@ -32,11 +32,11 @@ class m_ardes {
 
       if ($_SESSION['email'] == null){
           echo "<script>alert('Email/Password salah!')</script>";
-          header("location:login1.php");
+          header("location:login.php");
       } else {
           if ($_SESSION['pass'] == null){
               echo "<script>alert('Email/Password salah!')</script>";
-              header("location:login1.php");
+              header("location:login.php");
           } else{
             $sqlOtoritas = "SELECT otoritas FROM user WHERE email= '$email' AND pass = md5($Cpassword)";
             $resultOtoritas = $this->execute($sqlOtoritas);
@@ -49,7 +49,7 @@ class m_ardes {
             $_SESSION['aktif']= $resultStts['aktif'];
 
               if($_SESSION['otoritas']=="pengguna"){
-                  header("location:mainPageUser.php");
+                  header("location:mainPageArdes.php");
                   } else{
                     $sqlId = "SELECT id FROM user WHERE email= '$email' AND pass = md5($Cpassword)";
                     $resultId = $this->execute($sqlId);
@@ -138,7 +138,7 @@ $row = $result->fetch_assoc();
 
 }
 
-function fileUpload(){
+function fileUpload1(){
     $host='localhost';
     $username='root';
     $password='3gpower';
@@ -157,7 +157,7 @@ function fileUpload(){
 			if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
 				if($ukuran < 1044070){			
 					move_uploaded_file($file_tmp, 'file/'.$nama);
-					$query = mysqli_query($conn, "INSERT INTO upload VALUES($idUser, '$nama')");
+					$query = mysqli_query($conn, "INSERT INTO upload (id,nama_file1) VALUES($idUser, '$nama')");
 					if($query){
 						echo 'FILE BERHASIL DI UPLOAD';
                         // echo "<script>alert('FILE BERHASIL DI UPLOAD')</script>";
@@ -178,6 +178,87 @@ function fileUpload(){
 
 }
 
+function fileUpload2(){
+  $host='localhost';
+  $username='root';
+  $password='3gpower';
+  $dbname = "tugasakhir";
+  $conn=mysqli_connect($host,$username,$password,"$dbname");
+
+  $idUser=$_SESSION['id'];
+
+    $ekstensi_diperbolehkan	= array('png','jpg', 'jpeg');
+    $nama = $_FILES['file']['name'];
+    $x = explode('.', $nama);
+    $ekstensi = strtolower(end($x));
+    $ukuran	= $_FILES['file']['size'];
+    $file_tmp = $_FILES['file']['tmp_name'];
+    
+    if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+      if($ukuran < 1044070){			
+        move_uploaded_file($file_tmp, 'file/'.$nama);
+        $query = mysqli_query($conn, "UPDATE upload SET nama_file2 = '$nama' WHERE id=$idUser");
+        if($query){
+          echo 'FILE BERHASIL DI UPLOAD';
+                      // echo "<script>alert('FILE BERHASIL DI UPLOAD')</script>";
+        }else{
+          echo 'GAGAL MENGUPLOAD GAMBAR';
+                      // echo "<script>alert('GAGAL MENGUPLOAD GAMBAR')</script>";
+        }
+      }else{
+        echo 'UKURAN FILE TERLALU BESAR';
+                  // echo "<script>alert('UKURAN FILE TERLALU BESAR')</script>";
+
+      }
+    }else{
+      echo 'EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN';
+              // echo "<script>alert('EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN')</script>";
+
+    }
+
+}
+
+function fileUpload3(){
+  $host='localhost';
+  $username='root';
+  $password='3gpower';
+  $dbname = "tugasakhir";
+  $conn=mysqli_connect($host,$username,$password,"$dbname");
+
+  $idUser=$_SESSION['id'];
+
+    $ekstensi_diperbolehkan	= array('png','jpg', 'jpeg');
+    $nama = $_FILES['file']['name'];
+    $x = explode('.', $nama);
+    $ekstensi = strtolower(end($x));
+    $ukuran	= $_FILES['file']['size'];
+    $file_tmp = $_FILES['file']['tmp_name'];
+    
+    if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+      if($ukuran < 1044070){			
+        move_uploaded_file($file_tmp, 'file/'.$nama);
+        $query = mysqli_query($conn, "UPDATE upload SET nama_file3 = '$nama' WHERE id=$idUser");
+        if($query){
+          echo 'FILE BERHASIL DI UPLOAD';
+                      // echo "<script>alert('FILE BERHASIL DI UPLOAD')</script>";
+        }else{
+          echo 'GAGAL MENGUPLOAD GAMBAR';
+                      // echo "<script>alert('GAGAL MENGUPLOAD GAMBAR')</script>";
+        }
+      }else{
+        echo 'UKURAN FILE TERLALU BESAR';
+                  // echo "<script>alert('UKURAN FILE TERLALU BESAR')</script>";
+
+      }
+    }else{
+      echo 'EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN';
+              // echo "<script>alert('EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN')</script>";
+
+    }
+
+}
+
+
 function deleteUploadProcess(){
     $idUser=$_SESSION['id'];
 
@@ -185,7 +266,7 @@ function deleteUploadProcess(){
     $resultEmail = $this->execute($sqlDeleteUpload);
 }
 
-function viewUpload(){
+function viewUpload1(){
     $host='localhost';
     $username='root';
     $password='3gpower';
@@ -199,10 +280,50 @@ function viewUpload(){
     ?>
     <tr>
         <td>
-            <img src="<?php echo "file/".$d['nama_file']; ?>">
+            <img src="<?php echo "file/".$d['nama_file1']; ?>">
         </td>		
     </tr>
     <?php } 
+}
+
+function viewUpload2(){
+  $host='localhost';
+  $username='root';
+  $password='3gpower';
+  $dbname = "tugasakhir";
+  $conn=mysqli_connect($host,$username,$password,"$dbname");
+
+  $idUser=$_SESSION['id'];
+
+  $data = mysqli_query($conn, "SELECT * FROM upload  WHERE id=$idUser");
+  while($d = mysqli_fetch_array($data)){
+  ?>
+  <tr>
+      <td>
+          <img src="<?php echo "file/".$d['nama_file2']; ?>">
+      </td>		
+  </tr>
+  <?php } 
+}
+
+function viewUpload3(){
+  $host='localhost';
+  $username='root';
+  $password='3gpower';
+  $dbname = "tugasakhir";
+  $conn=mysqli_connect($host,$username,$password,"$dbname");
+
+  $idUser=$_SESSION['id'];
+
+  $data = mysqli_query($conn, "SELECT * FROM upload  WHERE id=$idUser");
+  while($d = mysqli_fetch_array($data)){
+  ?>
+  <tr>
+      <td>
+          <img src="<?php echo "file/".$d['nama_file3']; ?>">
+      </td>		
+  </tr>
+  <?php } 
 }
 
  function insertUser($namaDepan, $namaBelakang, $gender,

@@ -62,8 +62,6 @@
 </body>
 </html>
 
-
-
 <?php
 require_once "c_ardes.php";
 if(isset($_POST['submit'])){

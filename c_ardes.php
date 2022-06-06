@@ -15,12 +15,28 @@ function loginCheck(){
   
 }
 
-function upload(){
-    $this->model->fileUpload();
+function upload1(){
+    $this->model->fileUpload1();
 }
 
-function view(){
-    $this->model->viewUpload();
+function upload2(){
+    $this->model->fileUpload2();
+}
+
+function upload3(){
+    $this->model->fileUpload3();
+}
+
+function view1(){
+    $this->model->viewUpload1();
+}
+
+function view2(){
+    $this->model->viewUpload2();
+}
+
+function view3(){
+    $this->model->viewUpload3();
 }
  
 function viewContact($pilihId){
